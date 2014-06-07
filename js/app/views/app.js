@@ -2,8 +2,9 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'app/views/counter',
-], function($, _, Backbone, CounterView){
+	'app/views/dash',
+	'app/views/about'
+], function($, _, Backbone, DashView, AboutView){
 	'use strict';
 
 	var AppView = Backbone.View.extend({
@@ -22,10 +23,7 @@ define([
 		].join(''),
 
 
-		events: {
-			'click #nav-dash': 'onNavDash',
-			'click #nav-about': 'onNavAbout',
-		},
+		events: {},
 
 		views: {},
 
@@ -33,25 +31,32 @@ define([
 
 		initialize: function(){
 
-			this.views['counter'] = new CounterView({
-				id: 'counter-widget',
-				className: 'counter-widget'
-			})
+			this.views['about'] = new AboutView({
+				id: 'page-about',
+				className: 'page-view'
+			});
+
+			this.views['dash'] = new DashView({
+				id: 'page-dash',
+				className: 'page-view'
+			});
+
 
 			this.$el.append(this.html);
 
-			this.$('#content').append(this.views['counter'].render().el);
+			this.$('#content').append(this.views['about'].render().el);
+			this.$('#content').append(this.views['dash'].render().el);
 
 		},
 
 
-		onNavAbout: function(e){
-			alert('About button clicked');
-		},
+		setPage: function(page){
+			this.$('.nav li').removeClass('active');
+			this.$('.page-view').hide();
+			this.$('#page-'+page).show();
+			this.$('#nav-'+page).addClass('active');
 
-
-		onNavDash: function(e){
-			alert('Dash button clicked');
+			// this.model.set('welcomeMessage', 'Welcome to the '+page+ ' page');
 		}
 
 	});

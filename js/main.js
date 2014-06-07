@@ -32,6 +32,8 @@ require([
 	'backbone',
 	'app/app'
 ], function(Backbone, App){
+	
 	'use strict';
+	
 	App.initialize();
 });
