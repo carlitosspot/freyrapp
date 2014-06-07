@@ -2,14 +2,15 @@ define([
 	'app/views/app',
 	'app/routers/router',
 	'app/models/app',
-	'app/collections/days'
-	], function(AppView, Router, AppModel, DaysCollection ){
+	'app/collections/days',
+	'app/collections/places',
+	], function(AppView, Router, AppModel, DaysCollection, PlacesCollection ){
 
 	'use strict';
 
 	var initialize = function(){
 			
-			var appModel = new AppModel();
+			var appModel = new AppModel({id:1});
 
 			var appView = new AppView({model:appModel});	
 			
@@ -18,17 +19,29 @@ define([
 			var router = new Router(appView);
 			Backbone.history.start();
 
-			var daysCollection = new DaysCollection([]);
-			daysCollection.url = 'http://api.wunderground.com/api/ba840745ab58006a/forecast/q/IT/Magenta.json';
+			appModel.fetch();
 
-			daysCollection.fetch({
-				success: function(collection, response, options){
-					console.log(collection, response);
-				},
-				error: function(collection, response, options){
-					console.log('error');
-				}
-			});
+			var placesCollection = new PlacesCollection([]);
+			placesCollection.fetch();
+
+
+			window.debug = {
+				settings: appModel,
+				places: placesCollection
+			};
+
+
+			// var daysCollection = new DaysCollection([]);
+			// daysCollection.url = 'http://api.wunderground.com/api/ba840745ab58006a/forecast/q/IT/Magenta.json';
+
+			// daysCollection.fetch({
+			// 	success: function(collection, response, options){
+			// 		console.log(collection, response);
+			// 	},
+			// 	error: function(collection, response, options){
+			// 		console.log('error');
+			// 	}
+			// });
 
 		};
 
