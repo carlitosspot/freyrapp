@@ -11,7 +11,7 @@ define([
 		defaults:{
 			'backgroundColor': '#999999',
 			'celcius': true,
-			'welcomeMessage': 'Welcome to Weather'
+			'welcomeMessage': 'Welcome to Freyr'
 		}
 	});
 

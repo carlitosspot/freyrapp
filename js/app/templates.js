@@ -19,11 +19,37 @@ define([
 		'</div>',
 	].join('');
 
+	// Templates['day'] = [
+	// 	'<div>',
+	// 		'<img src="<%= icon_url %>" alt="" class="img-thumbnail">',
+	// 		'<br /><%= conditions %>',
+	// 	'<div>',
+	// ].join('');
+
 	Templates['day'] = [
-		'<div>',
+		'<div class="forecast-day">',
+			'<h3><%= weekday %></h3>',
 			'<img src="<%= icon_url %>" alt="" class="img-thumbnail">',
-			'<br /><%= conditions %>',
+			'<p class="forecast-fahr"><%= lowFahrenheit %> F - <%= highFahrenheit %>F </p>',
+			'<p class="forecast-cel"><%= lowCelsius %> C - <%= highCelsius %>C </p>',
+			'<div class="forecast-conditions"><%= conditions %></div>',
 		'<div>',
+	].join('');
+
+
+
+	Templates['modal'] = [
+		'<div class="modal fase"> ',
+			'<div class="modal-dialog">',
+				'<div class="modal-content">',
+					'<div class="modal-header">',
+						'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>',
+						'<h4 class="modal-title"><%=title %></h4>',
+					'</div>',
+					'<div class="modal-body"></div>',
+				'</div>',
+			'</div>',
+		'</div>',
 	].join('');
 
 	for (var tmpl in Templates) {

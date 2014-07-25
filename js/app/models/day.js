@@ -5,6 +5,7 @@ define([
 
 	var DayModel = Backbone.Model.extend({
 		defaults:{
+			'weekday':'',
 			'conditions': '',
 			'highCelsius': null,
 			'lowCelsius': null,
@@ -16,6 +17,7 @@ define([
 		parse: function(data)
 		{
 			var map = {
+				'weekday': data.date.weekday,
 				'conditions': data.conditions,
 				'highCelsius': data.high.celsius,
 				'lowCelsius': data.low.celsius,
